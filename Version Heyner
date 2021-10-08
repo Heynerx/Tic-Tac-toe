@@ -4,11 +4,12 @@
 
 using namespace std;
 
-void inicio();
+void primerMenu();
 void imprimirTablero();
 void mecanica();
 void matrizvect();
 void ceros();
+void segundoMenu();
 void comp();
 
 string tablero[3][5] = {};
@@ -32,7 +33,7 @@ int main()
 
 
 //Funcion que imprime el menu principal
-void inicio()
+void primerMenu()
 {
 
     cout << "\t\t\t\t\t╔════════════════════════╗" << endl;
@@ -74,6 +75,46 @@ void inicio()
             cout << "Digite un modo de juego valido: " << endl;
         }
     }
+}
+
+
+
+
+void segundoMenu(){
+system("clear");
+            
+            comp();
+            if (confirmarGanador == 1)
+            {
+            etc:
+                imprimirTablero();
+                cout << "\n\n¡Tres en raya!" << endl;
+                cout << "\nEl ganador es " << nombre << endl;
+                cout << "══════════════════════════════════" << endl;
+                cout << "Escriba el numero de la opcion: " << endl;
+                cout << "0.Volver al menu principal" << endl;
+                cout << "1.Para volver a jugar" << endl;
+                cout << "2.Salir" << endl;
+                cin >> eleccion;
+                if (eleccion == 1)
+                {
+                    ceros();
+                }
+                else if (eleccion == 0)
+                {
+                    system("clear");
+                    break;
+                }
+                else
+                {
+                    boolMenu = false;
+                    break;
+                }
+            }
+        }
+    }
+
+
 }
 
 
@@ -189,7 +230,6 @@ void mecanica()
                     break;
                 }
             }
-            system("clear");
             posicion2[posicion - 1] = "O";
             p = 0;
             for (int i = 0; i < 3; i++)
@@ -201,41 +241,11 @@ void mecanica()
                     p++;
                 }
             }
-            comp();
-            if (confirmarGanador == 1)
-            {
-            etc:
-                imprimirTablero();
-                cout << "\n\n¡Tres en raya!" << endl;
-                cout << "\nEl ganador es " << nombre << endl;
-                cout << "══════════════════════════════════" << endl;
-                cout << "Escriba el numero de la opcion: " << endl;
-                cout << "0.Volver al menu principal" << endl;
-                cout << "1.Para volver a jugar" << endl;
-                cout << "2.Salir" << endl;
-                cin >> eleccion;
-                if (eleccion == 1)
-                {
-                    ceros();
-                }
-                else if (eleccion == 0)
-                {
-                    system("clear");
-                    break;
-                }
-                else
-                {
-                    boolMenu = false;
-                    break;
-                }
-            }
-        }
-    }
+            segundoMenu();
 }
 
 
-
-
+//
 void comp()
 {
     for (int i = 0; i < 3; i++)
