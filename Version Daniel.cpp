@@ -10,44 +10,41 @@ void introducir_IA(char c[3][3]);
 int  ganar(char c[3][3]); 
 
 int main(){
-char c[3][3]; 
-
-loop(c); 
-
-
-return 0; 
+	char c[3][3];
+	loop(c);
+	return 0;
 }
 
 void loop (char c[3][3]){
 	
-	int i,j; 
-	i=0; 
+	int i, j; 
+	i = 0; 
 	
 	intro_primera(c);
-	do{
+	do {
 		system("cls"); 
 		tablero(c); 
 		
-		if(i%2==0){
+		if (i % 2 == 0) {
 			introducir(c); 
 		}
-		else{
+		else {
 			introducir_IA(c); 
 		}
 		
-		j=ganar(c); 
+		j = ganar(c); 
 		
 		i++; 
 		
-	}while(1<=9 && j==2); 
+	} while (1 <= 9 && j == 2); 
 	
-	system("cls"); 
-	tablero(c); 
+	system("cls");
+	tablero(c);
 	
-	if(j=0){
+	if (j == 0) {
 		printf("\n\nFelicidades has ganado la partida!\n ");
 	}
-	else if(j=1){
+	else if (j == 1) {
 		printf("\n\nintentalo otra vez, has perdido la partida!\n");
 	}
 	else{
@@ -56,39 +53,39 @@ void loop (char c[3][3]){
 }
 
 void intro_primera(char c[3][3]){
-	int i=0;
-	int j=0; 
-	char aux=0; 
-	aux='1'; 
+	int i = 0;
+	int j = 0; 
+	char aux = 0; 
+	aux = '1'; 
 	
-	for(i=0; i<3; i++){
-		for(j=0; j<3; j++){
-			c[i][j]=aux++; 	
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < 3; j++) {
+			c[i][j] = aux++; 	
 		}
 	}
 }
 
 void introducir(char c[3][3]){
 	
-	int i=0;
-	int j=0; 
-	int k=0; 
+	int i = 0;
+	int j = 0; 
+	int k = 0; 
 	char aux; 
 	
-	do{
-		do{
-			printf("\n\ncolocar un ficha: "); 
+	do {
+		do {
+			printf("\n\nColocar un ficha: "); 
 			fflush(stdin);
 			scanf("%c", &aux); 
-		}while (aux < '1' || aux > '9');  
+		} while (aux < '1' || aux > '9');  
 		
-		k=0;
+		k = 0;
 		
 		switch(aux){
 				case '1':{
-				i=0;
-				j=0;
-				if (c[i][j]== 'X' || c[i][j]== 'O'){
+				i = 0;
+				j = 0;
+				if (c[i][j] == 'X' || c[i][j] == 'O'){
 					k=1;
 					printf("la casilla seleccionada ya esta ocupada, por favor inentelo de nuevo\n\n"); 	
 				}
@@ -96,9 +93,9 @@ void introducir(char c[3][3]){
 			}
 			
 				case '2':{
-				i=0;
-				j=1;
-				if (c[i][j]== 'X' || c[i][j]== 'O'){
+				i = 0;
+				j = 1;
+				if (c[i][j] == 'X' || c[i][j] == 'O'){
 					k=1;
 					printf("la casilla seleccionada ya esta ocupada, por favor inentelo de nuevo\n\n"); 	
 				}
@@ -175,7 +172,7 @@ void introducir(char c[3][3]){
 				break;
 			}
 		}
-	}while(k==1); 
+	}while(k == 1); 
 	c[i][j] = 'X'; 
 	
 }
@@ -186,17 +183,17 @@ void introducir_IA(char c[3][3]){
 	int i,j,k; 
 	srand(NULL); 
 	
-	do{
+	do {
 		i = rand()%3;
 		j = rand()%3;
 		k = 0; 
 		
-			if (c[i][j]== 'X' || c[i][j]== 'O'){
-					k=1;
+			if (c[i][j] == 'X' || c[i][j] == 'O'){
+					k = 1;
 			}	
-	}while(k==1); 
+	} while (k==1); 
 	
-	c[i][j]='O'; 
+	c[i][j] = 'O'; 
 }
 
 void tablero(char c[3][3]){
