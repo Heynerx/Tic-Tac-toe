@@ -15,10 +15,10 @@ void comp();
 string tablero[3][3] = {};
 string vectorTablero[9] = {};
 string nombre1, nombre2, nombre;
-bool continuar = true, boolDesicion = true;
-bool boolDosjugadores = true, o = true, boolCasillasmarc = true, boolMenu = true;
-int modoJuego = 0, posicion = 0, confirmarGanador = 0, tiempoDelay = 70000;
-int eleccion = 0;
+
+bool boolDosjugadores = true,boolMenu = true;
+int modoJuego = 0, posicion = 0, confirmarGanador = 0;
+
 
 
 int main()
@@ -35,6 +35,8 @@ int main()
 //Funcion que imprime el menu principal
 void primerMenu()
 {
+    bool boolDesicion = true;
+    int tiempoDelay = 70000;
 
     cout << "\t\t\t\t\t╔════════════════════════╗" << endl;
     usleep(tiempoDelay);
@@ -59,7 +61,7 @@ void primerMenu()
 
     cout << "Digite el numero del juego:" << endl;
     //c=true se usa para que vuelva a entrar al ciclo while
-    boolDesicion = true;
+    
     while (boolDesicion == true)
     {
         modoJuego = 0;
@@ -67,7 +69,7 @@ void primerMenu()
         cin >> modoJuego;
         if (modoJuego < 2 && modoJuego > 0)
         {
-            boolDesicion = false;
+            break;
             system("clear");
         }
         else
@@ -132,7 +134,11 @@ void primerMenu()
 
 void mecanica()
 {
+bool boolCasillasmarc = true;
+int p = 0;
+int eleccion = 0;
 
+system("clear");
     if (modoJuego == 1)
     {
 
@@ -144,7 +150,7 @@ void mecanica()
 
         while (boolDosjugadores == true)
         {
-            int p = 0;
+            
 
             imprimirTablero();
             cout << "\n\nTurno de " << nombre1 << " X :" << endl;
@@ -184,7 +190,7 @@ void mecanica()
             imprimirTablero();
             cout << "\n\nTurno de " << nombre2 << " O :" << endl;
             nombre = nombre2;
-            while (o == true)
+            while (boolCasillasmarc == true)
             {
                 cin >> posicion;
 
