@@ -1,15 +1,20 @@
 #include <iostream>
 #include <cstdlib>
 #include <unistd.h>
+#include <string>
+#include <ctime>
+
 
 using namespace std;
-
+void eleccion();
 void primerMenu();
 void imprimirTablero();
 void ceros();
-void mecanica();
+void dosJugadores();
+void contraCpu();
 void segundoMenu();
 int ganador();
+
 
 string tablero[3][3] = {};
 string vectorTablero[9] = {};
@@ -17,6 +22,8 @@ string nombre1, nombre2, nombre;
 
 bool boolDosjugadores = true,boolMenu = true;
 int modoJuego = 0, posicion = 0,contVector = 0;
+ 
+
 
 
 
@@ -26,9 +33,36 @@ int main()
     {
         ceros();
         primerMenu();
-        mecanica();
+        eleccion();
     }
 }
+
+
+
+
+void eleccion(){
+
+   switch (modoJuego)
+   {
+   case 1:
+   {
+       dosJugadores();
+   }
+    break;
+    case 2:
+  {
+       contraCpu();
+   }
+   break;
+   
+       
+   }
+
+
+
+}
+
+
 
 
 //Funcion que imprime el menu principal
@@ -66,7 +100,7 @@ void primerMenu()
         modoJuego = 0;
 
         cin >> modoJuego;
-        if (modoJuego < 2 && modoJuego > 0)
+        if (modoJuego <= 2 && modoJuego > 0)
         {
             break;
             system("clear");
@@ -132,16 +166,14 @@ void primerMenu()
 
 
 
-void mecanica()
+void dosJugadores()
 {
 bool boolCasillasmarc = true;
 int p = 0;
 int eleccion = 0;
 
 system("clear");
-    if (modoJuego == 1)
-    {
-
+    
         cout << "Escriba el nombre del Jugador 1:" << endl;
         cin >> nombre1;
         cout << "Escriba el nombre del Jugador 2:" << endl;
@@ -150,6 +182,7 @@ system("clear");
 
         while (boolDosjugadores == true)
         {
+            system("clear");
             
 
             imprimirTablero();
@@ -184,7 +217,7 @@ system("clear");
             }
             
             ganador();
-  if (ganador() == 1)
+        if (ganador() == 1)
             {
                 goto etc;
             }
@@ -250,10 +283,130 @@ system("clear");
                 }
             }
         }
-    }
+    
 
             
 }
+
+
+void contraCpu(){
+    bool boolCasillasCpu = true;
+    int p = 0;
+    srand((unsigned)time(0));
+    int eleccion = 0;
+    
+ cout << "Escribe tu nombre:" << endl;
+cin >> nombre1;
+
+while (boolDosjugadores == true)
+        {
+            system("clear");
+            
+
+            imprimirTablero();
+            cout << "\n\nTurno de " << nombre1 << " X :" << endl;
+            nombre = nombre1;
+            while (boolCasillasCpu)
+            {
+                cin >> posicion;
+
+                if (vectorTablero[posicion - 1] != " ")
+                {
+                    cout << "Esta casilla ya fue marcada, digite una vacia:" << endl;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            system("clear");
+            vectorTablero[posicion - 1] = "X";
+            contVector++;
+
+            p = 0;
+            for (int i = 0; i < 3; i++)
+            {
+
+                for (int j = 0; j < 3; j++)
+                {
+                    tablero[i][j] = vectorTablero[p];
+                    p++;
+                }
+            }
+            
+            ganador();
+        if (ganador() == 1)
+            {
+                goto etc;
+            }
+  
+  
+  imprimirTablero();
+            cout << "\n\nTurno de la CPU O :" << endl;
+             cout<<"DEJAME PENSAR..."<<endl;
+            usleep(2000000);
+            cout<<"YA LO TENGO!"<<endl;
+            usleep(800000);
+            nombre = "CPU";
+            while (boolCasillasCpu == true)
+            {
+                //Aqui se le asigna el valor random para la cpu
+                posicion = 1+rand()%9;
+
+                if (vectorTablero[posicion - 1] == " ")
+                {
+                    break;
+                }
+                
+            }
+            vectorTablero[posicion - 1] = "O";
+            contVector++;
+            p = 0;
+            for (int i = 0; i < 3; i++)
+            {
+
+                for (int j = 0; j < 3; j++)
+                {
+                    tablero[i][j] = vectorTablero[p];
+                    p++;
+                }
+            }
+            system("clear");
+            
+            ganador();
+
+            if (contVector>=5 && ganador() == 1)
+            {
+            etc:
+
+                imprimirTablero();
+                segundoMenu();
+                cin >> eleccion;
+                if (eleccion == 1)
+                {
+                    ceros();
+                    
+                }
+                else if (eleccion == 0)
+                {
+                    system("clear");
+                    
+                    break;
+                }
+                else
+                {
+                    boolMenu = false;
+                    
+                    break;
+                }
+            }
+        }
+    
+
+}
+
+
+
 
 void segundoMenu(){
 cout << "\n\n¡Tres en raya!" << endl;
@@ -262,7 +415,7 @@ cout << "\n\n¡Tres en raya!" << endl;
                 cout << "Escriba el numero de la opcion: " << endl;
                 cout << "0.Volver al menu principal" << endl;
                 cout << "1.Para volver a jugar" << endl;
-                cout << "2.Salir" << endl;
+                cout << "Para salir presione cualquier otro" << endl;
 
 }
 
@@ -302,4 +455,5 @@ int ganador()
     }
     
 }
+
 
