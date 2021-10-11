@@ -259,9 +259,28 @@ void contraCpu()
     int p = 0;
     srand((unsigned)time(0));
     int eleccion = 0;
+    system("clear");
+    cout << " ╔══════╗  " << endl;
+    cout << "╔╝ ●  ● ╚╗ HOLA, YO JUGARE CONTIGO " << endl;
+    cout << "╚╗  ▆▆  ╔╝" << endl;
+    cout << " ╚══════╝" << endl;
+    usleep(2000000);
+    system("clear");
+    cout << " ╔══════╗  " << endl;
+    cout << "╔╝ ●  ● ╚╗ ESPERO QUE SEAS BUENO " << endl;
+    cout << "╚╗  ▆▆  ╔╝" << endl;
+    cout << " ╚══════╝" << endl;
+    usleep(2000000);
 
     cout << "Escribe tu nombre:" << endl;
     cin >> nombre1;
+
+    system("clear");
+    cout << " ╔══════╗  " << endl;
+    cout << "╔╝ ●  ● ╚╗ HOLA " << nombre1 << " EMPEZEMOS A JUGAR" << endl;
+    cout << "╚╗  ▆▆  ╔╝" << endl;
+    cout << " ╚══════╝" << endl;
+    usleep(2000000);
 
     while (boolDosjugadores == true)
     {
@@ -306,6 +325,12 @@ void contraCpu()
 
         imprimirTablero();
         cout << "\n\nTurno de la CPU O :" << endl;
+
+        cout << " ╔══════╗  " << endl;
+        cout << "╔╝ ◍  ◍ ╚╗  " << endl;
+        cout << "╚╗  ▆▆  ╔╝" << endl;
+        cout << " ╚══════╝" << endl;
+
         cout << "DEJAME PENSAR..." << endl;
         usleep(2000000);
         cout << "YA LO TENGO!" << endl;
@@ -342,7 +367,24 @@ void contraCpu()
         etc:
 
             imprimirTablero();
+            cout << "\n ╔══════╗  " << endl;
+            cout << "╔╝ ⊙  ⊙ ╚╗  ¿!COMO ME GANASTE¡?" << endl;
+            cout << "╚╗  ●   ╔╝" << endl;
+            cout << " ╚══════╝" << endl;
+            usleep(2000000);
+            system("clear");
+            cout << " ╔══════╗  " << endl;
+            cout << "╔╝ ⊙  ⊙ ╚╗  ¡DAME UNA REVANCHA SUERTUDO!" << endl;
+            cout << "╚╗  ●   ╔╝" << endl;
+            cout << " ╚══════╝" << endl;
+            usleep(2000000);
+
             segundoMenu();
+            cout << "\n ╔══════╗  " << endl;
+            cout << "╔╝ ⊙  ⊙ ╚╗  VAMOS, INTRODUCE EL 1 SI TE CREES BUENO" << endl;
+            cout << "╚╗  ●   ╔╝" << endl;
+            cout << " ╚══════╝" << endl;
+            usleep(2990000);
             cin >> eleccion;
             if (eleccion == 1)
             {
@@ -410,4 +452,5 @@ int ganador()
         return 0;
     }
 }
+
 
