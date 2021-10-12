@@ -38,7 +38,7 @@ void loop (char c[3][3]){
 	
 	intro_primera(c);
 	do{
-		system("cls"); 
+		//system("cls"); 
 		tablero(c); 
 		
 		if(i%2==0){
@@ -54,13 +54,13 @@ void loop (char c[3][3]){
 		
 	}while(1<=9 && j==2); 
 	
-	system("cls"); 
+	//system("cls"); 
 	tablero(c); 
 	
-	if(j=0){
+	if(j==0){
 		printf("\n\nFelicidades has ganado la partida!\n ");
 	}
-	else if(j=1){
+	else if(j==1){
 		printf("\n\nintentalo otra vez, has perdido la partida!\n");
 	}
 	else{ 
@@ -75,7 +75,7 @@ void loop2 (char c[3][3]){
 	
 	intro_primera(c);
 	do{
-		system("cls"); 
+		//system("cls"); 
 		tablero(c); 
 		
 		if(i%2==0){
@@ -91,13 +91,13 @@ void loop2 (char c[3][3]){
 		
 	}while(1<=9 && j==2); 
 	
-	system("cls"); 
+	//system("cls"); 
 	tablero(c); 
 	
-	if(j=0){
+	if(j==0){
 		printf("\n\nFelicidades has ganado la partida!\n ");
 	}
-	else if(j=1){
+	else if(j==1){
 		printf("\n\nintentalo otra vez, has perdido la partida!\n");
 	}
 	else{ 
