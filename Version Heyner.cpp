@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <string>
 #include <ctime>
+#include <cstring>
 
 using namespace std;
 void eleccion();
@@ -17,6 +18,8 @@ int ganador();
 string tablero[3][3] = {};
 string vectorTablero[9] = {};
 string nombre1, nombre2, nombre;
+char aux[3];
+int n = 0;
 
 bool boolDosjugadores = true, boolMenu = true;
 int modoJuego = 0, posicion = 0, contVector = 0;
@@ -289,6 +292,7 @@ void contraCpu()
         imprimirTablero();
         cout << "\n\nTurno de " << nombre1 << " X :" << endl;
         nombre = nombre1;
+        n = 2;
         while (boolCasillasCpu)
         {
             cin >> posicion;
@@ -318,11 +322,10 @@ void contraCpu()
         }
 
         ganador();
-        if (ganador() == 1)
-        {
+        if (ganador() == 1 || ganador() == 2) {
             goto etc;
         }
-
+      
         imprimirTablero();
         cout << "\n\nTurno de la CPU O :" << endl;
 
@@ -336,6 +339,7 @@ void contraCpu()
         cout << "YA LO TENGO!" << endl;
         usleep(800000);
         nombre = "CPU";
+        n = 1;
         while (boolCasillasCpu == true)
         {
             //Aqui se le asigna el valor random para la cpu
@@ -367,24 +371,35 @@ void contraCpu()
         etc:
 
             imprimirTablero();
-            cout << "\n ╔══════╗  " << endl;
-            cout << "╔╝ ⊙  ⊙ ╚╗  ¿!COMO ME GANASTE¡?" << endl;
-            cout << "╚╗  ●   ╔╝" << endl;
-            cout << " ╚══════╝" << endl;
-            usleep(2000000);
-            system("clear");
-            cout << " ╔══════╗  " << endl;
-            cout << "╔╝ ⊙  ⊙ ╚╗  ¡DAME UNA REVANCHA SUERTUDO!" << endl;
-            cout << "╚╗  ●   ╔╝" << endl;
-            cout << " ╚══════╝" << endl;
-            usleep(2000000);
+            if (n == 2 && ganador()==1) {
+		        cout << "\n ╔══════╗  " << endl;
+                cout << "╔╝ ⊙  ⊙ ╚╗  ¿!COMO ME GANASTE¡?" << endl;
+                cout << "╚╗  ●   ╔╝" << endl;
+                cout << " ╚══════╝" << endl;
+                usleep(2000000);
+                system("clear");
+                cout << " ╔══════╗  " << endl;
+                cout << "╔╝ ⊙  ⊙ ╚╗  ¡DAME UNA REVANCHA SUERTUDO!" << endl;
+                cout << "╚╗  ●   ╔╝" << endl;
+                cout << " ╚══════╝" << endl;
+                usleep(2000000);
+                cout << "\n ╔══════╗  " << endl;
+                cout << "╔╝ ⊙  ⊙ ╚╗  VAMOS, INTRODUCE EL 1 SI TE CREES BUENO" << endl;
+                cout << "╚╗  ●   ╔╝" << endl;
+                cout << " ╚══════╝" << endl;
+                usleep(2990000);
+            }
+            else if (n==1 && ganador()==1){
+		        cout << "\n ╔══════╗  " << endl;
+                cout << "╔╝ ●  ● ╚╗  FUE UNA VICTORIA MUY FACIL" << endl;
+                cout << "╚╗  ▆▆  ╔╝  NO SABES JUGAR HA HA HA HA" << endl;
+                cout << " ╚══════╝" << endl;
+                usleep(2000000);     
+            }
+
+            n = 0;
 
             segundoMenu();
-            cout << "\n ╔══════╗  " << endl;
-            cout << "╔╝ ⊙  ⊙ ╚╗  VAMOS, INTRODUCE EL 1 SI TE CREES BUENO" << endl;
-            cout << "╚╗  ●   ╔╝" << endl;
-            cout << " ╚══════╝" << endl;
-            usleep(2990000);
             cin >> eleccion;
             if (eleccion == 1)
             {
@@ -408,8 +423,19 @@ void contraCpu()
 
 void segundoMenu()
 {
-    cout << "\n\n¡Tres en raya!" << endl;
-    cout << "\nEl ganador es " << nombre << endl;
+    if (ganador() == 1) {
+        cout << "\n\n¡Tres en raya!" << endl;
+        cout << "\nEl ganador es " << nombre << endl;
+    }
+    else if (ganador() == 2) {
+        cout<<"\n\nEMPATAMOS "<<nombre<<".\nBIEN JUGADO"<<endl; 
+        cout << " ╔══════╗  " << endl;
+        cout << "╔╝ ⊙  ⊙ ╚╗ " << endl;
+        cout << "╚╗  ▆▆  ╔╝" << endl;
+        cout << " ╚══════╝" << endl;
+        usleep(2000000);
+
+    }
     cout << "══════════════════════════════════" << endl;
     cout << "Escriba el numero de la opcion: " << endl;
     cout << "0.Volver al menu principal" << endl;
@@ -421,7 +447,7 @@ int ganador()
 {
     int j = 0;
     if (contVector >= 5)
-    {
+    {  
 
         for (int i = 0; i < 3; i++)
         {
@@ -447,10 +473,13 @@ int ganador()
             }
         }
     }
-    else
-    {
-        return 0;
+    
+    if (contVector == 9) {
+        return 2;
     }
+    
+    return 0;
+
 }
 
 
